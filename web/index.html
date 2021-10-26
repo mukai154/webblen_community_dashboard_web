@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <base href="/">
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="57x57" href="icons/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="icons/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="icons/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="icons/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="icons/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="icons/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="icons/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="icons/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="icons/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192"  href="icons/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="icons/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="icons/favicon-16x16.png">
+  <link rel="manifest" href="icons/manifest.json">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="icons/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+  <title>Webblen Community Organizer</title>
+
+  <!-- Google Auth -->
+  <meta name="google-signin-client_id" content="618036466482-2ch7gmahk38212m5qvaehk6bkd7erdhj.apps.googleusercontent.com">
+
+  <!-- Apple Auth -->
+  <script type="text/javascript" src="https://appleid.cdn-apple.com/appleauth/static/jsapi/appleid/1/en_US/appleid.auth.js"></script>
+
+  <meta name="appleid-signin-client-id" content="io.webblen.app">
+  <meta name="appleid-signin-scope" content="email">
+  <meta name="appleid-signin-redirect-uri" content="https://app.webblen.io/redirect">
+  <meta name="appleid-signin-use-popup" content="true"> <!-- or false defaults to false -->
+
+  <script defer src="index.dart.js" type="application/javascript"></script>
+
+  <!-- style -->
+  <style>
+    .loading {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      -ms-transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%);
+    }
+
+    .loader {
+      border: 8px solid #f3f3f3;
+      border-radius: 50%;
+      border: 8px solid ;
+      border-top: 8px solid #dfe4ea;
+      border-right: 8px solid white;
+      border-bottom: 8px solid #dfe4ea;
+      border-left: 8px solid white;
+      width: 50px;
+      height: 50px;
+      -webkit-animation: spin 2s linear infinite;
+      animation: spin 2s linear infinite;
+    }
+
+    @-webkit-keyframes spin {
+      0% {
+        -webkit-transform: rotate(0deg);
+      }
+      100% {
+        -webkit-transform: rotate(360deg);
+      }
+    }
+
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+  </style>
+</head>
+
+<body id="app-container">
+
+<div class="loading">
+  <div class="loader"></div>
+</div>
+
+
+<!-- FIREBASE PRODUCTS -->
+<!-- https://firebase.google.com/docs/web/setup#available-libraries -->
+<!--  <script src="/__/firebase/8.6.1/firebase-app.js"></script>-->
+<!--  <script src="/__/firebase/8.6.1/firebase-auth.js"></script>-->
+<!--  <script src="/__/firebase/7.22.1/firebase-firestore.js"></script>-->
+<!--  <script src="/__/firebase/8.6.1/firebase-storage.js"></script>-->
+<!--  <script src="/__/firebase/8.6.1/firebase-analytics.js"></script>-->
+<!--  <script src="/__/firebase/8.6.1/firebase-functions.js"></script>-->
+
+<!--   Local Use Dependencies-->
+<script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.22.1/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-storage.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-functions.js"></script>
+
+<!-- Firebase Configuration -->
+<script>
+      var firebaseConfig = {
+        apiKey: "AIzaSyBJVHmY_WAjWfpz69S_4n-Bt6HRc-YO6WM",
+        authDomain: "webblen-events.firebaseapp.com",
+        databaseURL: "https://webblen-events.firebaseio.com",
+        projectId: "webblen-events",
+        storageBucket: "webblen-events.appspot.com",
+        messagingSenderId: "618036466482",
+        appId: "1:618036466482:web:8dcdeeb28cdeafdc6afd2b",
+        measurementId: "G-XVFVWEFKPX"
+      };
+      firebase.initializeApp(firebaseConfig);
+</script>
+
+<!-- FACEBOOK LOGIN -->
+
+<!--Facebook SDK config -->
+<script>
+    window.fbAsyncInit = function() {
+      FB.init({
+        appId            : '1366128250170949',
+        autoLogAppEvents : true,
+        xfbml            : true,
+        version          : 'v7.0'
+      });
+    };
+  </script>
+
+<!-- Facebook JS CDN SDK -->
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>
+
+<!-- for interop with dart through this plugin -->
+<script src="https://flutterfacebooklogin.s3.us-east-2.amazonaws.com/web_interop.js"></script>
+
+<script src="main.dart.js" type="application/javascript"></script>
+
+</body>
+
+</html>

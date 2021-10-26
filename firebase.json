@@ -1,0 +1,17 @@
+{
+  "hosting": {
+    "public": "build/web",
+    "site": "webblen-community-dashboard",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}
